@@ -60,23 +60,27 @@ Buatlah program game memori yang dimana ada angka dan huruf acak yang akan mengh
 
 ```mermaid
 flowchart TD
-    A([start]) --> B[/SELAMAT DATANG DI DALAM PERMAINAN MEMORI/]
-    B --> C[/Pilih kesulitan: \n1. Easy\n2. Medium\n3. Hard/]
-    C --> D[/Input Pilihan kesulitan/]
-    D --> E{Kesulitan}
-    E -- 1 or default --> F[Panjang 4]
-    E -- 2 --> G[Pajang 5]
-    E -- 3 --> H[Panjang 10]
-    F --> I[Proses generate string]
-    I --> N[/Print String/]
-    N --> O[Hilang/Terhapus]
+    A([Mulai]) --> B[/"SELAMAT DATANG DI DALAM PERMAINAN MEMORI"/]
+    B --> C[/"Pilih kesulitan:<br/>1. Easy<br/>2. Medium<br/>3. Hard"/]
+    C --> D[/Input pilihan kesulitan/]
+    D --> E{Kesulitan?}
+    E -->|1 atau default| F["panjang = 4"]
+    E -->|2| G["panjang = 5"]
+    E -->|3| H["panjang = 10"]
+    F --> I["kunci = generateStringAcak(panjang)"]
     G --> I
     H --> I
-    O --> J{While Pengulangan > 0}
-    J --> K[/Masukkan String yang kamu lihat: /]
-    K -- false --> P[/SALAH/] --> R[Pengulangan -=1]
-    R --> J
-    K --> L{Pengulangan == 0}
-    L -- false --> M[/SELAMAT ANDA BENAR/]
-    L -- true --> Q[/GAME OVER/]
+    I --> J[/"Tampilkan kunci (string acak)"/]
+    J --> K["Tunggu 3 detik, lalu hapus layar"]
+    K --> L["pengulangan = 3"]
+    L --> M{"pengulangan > 0?"}
+    M -->|Tidak| Q[/"GAME OVER"/]
+    M -->|Ya| N[/"Input: string yang kamu lihat"/]
+    N --> O{"jawaban.equals(kunci)?"}
+    O -->|Ya| P[/"SELAMAT ANDA BENAR"/]
+    O -->|Tidak| S[/"SALAH"/]
+    S --> T["pengulangan = pengulangan - 1"]
+    T --> M
+    P --> Z([Selesai])
+    Q --> Z
 ```
