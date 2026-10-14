@@ -11,7 +11,9 @@ public class memoryGame{
 
         for (int i = 0; i < length; i++) {
             int index = random.nextInt(characters.length());
+            // System.out.println(index);
             result.append(characters.charAt(index));
+            // System.out.println(result);
         }
 
         return result.toString();
@@ -31,9 +33,18 @@ public class memoryGame{
             System.getLogger(memoryGame.class.getName()).log(System.Logger.Level.ERROR, (String) null, e);
         }
     }
+
     public static void sleep(){
         try {
             Thread.sleep(3000);
+        } catch (InterruptedException ex) {
+            System.getLogger(memoryGame.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
+
+    public static void sleepPendek(){
+        try {
+            Thread.sleep(1000);
         } catch (InterruptedException ex) {
             System.getLogger(memoryGame.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
@@ -53,6 +64,7 @@ public class memoryGame{
                 case 3 -> panjang = 10;
                 default -> panjang = 4;
             }
+            clearScreen();
             String kunci = randomizeString(panjang);
             System.out.println(kunci);
             sleep();
@@ -64,11 +76,11 @@ public class memoryGame{
                 String jawaban = input.nextLine();
                 if(jawaban.equals(kunci)){
                     System.out.println("Benar");
-                    sleep();
+                    sleepPendek();
                     break;
                 } else{
                     System.out.println("Salah");
-                    sleep();
+                    sleepPendek();
                 }
                 pengulangan -= 1;
                 clearScreen();
